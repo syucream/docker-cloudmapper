@@ -3,7 +3,7 @@
 [Cloudmapper](https://github.com/duo-labs/cloudmapper) is a tool to visualize AWS infrastructure.  In early July 2018, [Docker support was
 removed](https://github.com/duo-labs/cloudmapper/commit/c430e5faab41e8355052e82fe9dea4d8f4beb654) from their repo.  I wrote this project to bring back support for Docker.
 
-I personally find that running this application is docker is easier because it avoids issues with dependency version conflicts.  Running it in Docker Just Works™ and keeps my host machine nice and clean.
+I personally find that running this application is docker is easier because it avoids issues with dependency version conflicts.  Running it in Docker "Just Works™" and keeps my host machine nice and clean.
 
 ## Quick Start
 
@@ -16,6 +16,16 @@ Prerequisites: just `Docker` :)
 - `docker-compose up -d`
 
 Go to http://localhost:8000 and enjoy!
+
+Stop the service with `docker-compose down`.  Back up with `docker-compose up -d`.  View logs with `docker-compose logs -f`.  Do a rebuild with `docker-compose build`, or `docker-compose build --no-cache` if something went wrong.
+
+### Logging into the Container
+
+Once the service is running you can log into the container with `docker exec -it cloudmapper sh`.  You will automatically be put into `/opt/cloudmapper`, from which all the usual Cloudmapper commands will run.  Note that `$ACCOUNT` and other variables are already set for you in the container, so these command will Just Work™
+
+- `pipenv run python cloudmapper.py collect --account $ACCOUNT` Collect info about our AWS infrastructure
+- `pipenv run python cloudmapper.py prepare --account $ACCOUNT` Prepare the collected data for serving
+- 
 
 ## How This Works / Approach
 
