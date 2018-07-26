@@ -25,7 +25,6 @@ Once the service is running you can log into the container with `docker exec -it
 
 - `pipenv run python cloudmapper.py collect --account $ACCOUNT` Collect info about our AWS infrastructure
 - `pipenv run python cloudmapper.py prepare --account $ACCOUNT` Prepare the collected data for serving
-- 
 
 ## How This Works / Approach
 
@@ -73,8 +72,6 @@ The current approach also assumes that you only need to run `collect` and `prepa
 Another improvement would be to serve `/web` via nginx instead of the built-in `cloudmapper.py webserver` to improve performance, and because it's "best practice", but I did not see a real-world, measurable improvement in performance.  We would add nginx to docker-compose.yml for this.
 
 "Debug Mode" is not yet working in this build.  I added the variables for it, and the code is ready, but I don't personally have any need for demo data, so I didn't finish setting it up.
-
-Finally, there's an issue with logging in this build.  `docker logs cloudmapper` or `docker-compose logs -f` has no output, nor does the `entrypoint.sh` output, etc.  Probably an easy fix :)
 
 ## License
 
