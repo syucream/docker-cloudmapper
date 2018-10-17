@@ -6,7 +6,7 @@
 #
 # This project pulls Cloudmapper and initializes it in a docker container.
 
-FROM python:alpine
+FROM python:3.7-alpine
 
 LABEL maintainer="https://github.com/sebastientaggart"
 
@@ -25,12 +25,14 @@ python-dev \
 jq \
 g++ \
 make \
+openblas \
+openblas-dev \
 freetype-dev \
 libpng-dev \
 git
 
 RUN git clone https://github.com/duo-labs/cloudmapper.git .
-RUN pip install pipenv && pipenv --two && pipenv install
+RUN pip install pipenv && pipenv install
 RUN pip install --upgrade awscli
 #RUN chmod +x entrypoint.sh && touch config.json
 
