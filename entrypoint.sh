@@ -8,9 +8,6 @@
 # - run "collect", "prepare", and "webserver" scripts
 # - serve the application on :8000
 
-# load the environement variables with your values
-source .env
-
 # TODO: Support demo mode
 # DEMO_MODE = false/true
 # Check if:
