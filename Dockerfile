@@ -31,21 +31,9 @@ freetype-dev \
 libpng-dev \
 git
 
-RUN git clone https://github.com/duo-labs/cloudmapper.git .
-RUN git checkout -b 2.5.1 refs/tags/2.5.1
+RUN git clone https://github.com/syucream/cloudmapper.git .
+RUN git checkout -b 2.5.1.1 refs/tags/2.5.1.1
 RUN pip install pipenv && pipenv install --skip-lock
 RUN pip install --upgrade awscli
 
-COPY entrypoint.sh ./entrypoint.sh
-
-COPY .env ./.env
-
-# Keep the container alive for testing
-#CMD tail -f /dev/null
-
-CMD ["sh","entrypoint.sh"]
-
-# Health Check.  Long interval is because it can take a long time to load data
-# from AWS the first time this runs (TODO: don't run data load on run)
-HEALTHCHECK --interval=5m --timeout=3s \
-  CMD netstat -an | grep "0.0.0.0:8000" > /dev/null; if [ 0 != $? ]; then exit 1; fi;
+COPY prepare.sh ./prepare.sh

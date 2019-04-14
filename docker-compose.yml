@@ -1,13 +1,30 @@
 version: "3"
 
 services:
-    cloudmapper:
+    prepare:
         build:
             context: .
         image: cloudmapper
-        container_name: cloudmapper
+        container_name: cloudmapper-prepare
         env_file: .env
         volumes:
             - ./config.json:/opt/cloudmapper/config.json
+            - ./prepared:/opt/cloudmapper/prepared
+            # use cache
+            # - ./prepared/account-data:/opt/cloudmapper/account-data
+        command: sh prepare.sh
+
+    web:
+        build:
+            context: .
+        image: cloudmapper
+        container_name: cloudmapper-web
+        env_file: .env
+        tty: true
+        volumes:
+            - ./prepared/account-data:/opt/cloudmapper/account-data
+            - ./config.json:/opt/cloudmapper/config.json
+            - ./prepared/web:/opt/cloudmapper/web
         ports:
             - ${EXTERNAL_PORT}:8000
+        command: pipenv run python cloudmapper.py webserver --public

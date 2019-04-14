@@ -8,9 +8,6 @@
 # - run "collect", "prepare", and "webserver" scripts
 # - serve the application on :8000
 
-# load the environement variables with your values
-source .env
-
 # TODO: Support demo mode
 # DEMO_MODE = false/true
 # Check if:
@@ -38,7 +35,7 @@ fi
 pipenv run python cloudmapper.py collect --account ${ACCOUNT}
 
 # Prepare the collected data for serving
-pipenv run python cloudmapper.py prepare --account ${ACCOUNT}
+pipenv run python cloudmapper.py prepare --account ${ACCOUNT} ${PREPARE_OPTS}
 
-# Start serving on :8000 (by default), --public means bind to 0.0.0.0
-pipenv run python cloudmapper.py webserver --public
+cp -r account-data prepared/
+cp -r web prepared/

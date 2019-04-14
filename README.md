@@ -13,7 +13,8 @@ Prerequisites: just `Docker` :)
 - `cd docker-cloudmapper`
 - Edit `.env` file and add your AWS key, secret, region, and account name.
 - `docker-compose build` (go get a cup of coffee)
-- `docker-compose up -d`
+- `docker-compose up prepare` (wait until preparing webserver)
+- `docker-compose up web -d`
 
 Go to http://localhost:8000 and enjoy!
 
