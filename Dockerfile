@@ -33,7 +33,8 @@ git
 
 RUN git clone https://github.com/duo-labs/cloudmapper.git .
 RUN git checkout -b 2.5.5 refs/tags/2.5.5
-RUN pip install pipenv && pipenv install --skip-lock
+RUN pip install pipenv
+RUN pipenv install --skip-lock
 RUN pip install --upgrade awscli
 
 COPY prepare.sh ./prepare.sh
