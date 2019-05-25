@@ -31,8 +31,8 @@ freetype-dev \
 libpng-dev \
 git
 
-RUN git clone https://github.com/duo-labs/cloudmapper.git .
-RUN git checkout -b latest 92021a776d4885065b1efd291565a2b69c3214f8
+RUN git clone https://github.com/syucream/cloudmapper.git .
+RUN git checkout -b latest 5368ea4d65c8ff82ccb5b4ede0aeccbfe35f7f02
 RUN pip install pipenv
 RUN pipenv install --skip-lock
 RUN pip install --upgrade awscli
